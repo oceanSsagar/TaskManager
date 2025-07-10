@@ -1,0 +1,44 @@
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f7f7f7;
+}
+
+.app {
+  max-width: 500px;
+  margin: auto;
+  padding: 2rem;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+
+.new-task {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.new-task input {
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  background: #eef;
+  padding: 0.5rem;
+  margin: 0.3rem 0;
+  border-radius: 5px;
+}
+
+.task-item.done span {
+  text-decoration: line-through;
+  opacity: 0.5;
+}
+
+.filter-bar button {
+  margin-right: 5px;
+  padding: 0.3rem 0.6rem;
+}
