@@ -1,44 +1,201 @@
-body {
-  margin: 0;
-  font-family: system-ui, sans-serif;
-  background: #f7f7f7;
-}
+/* ----------------- Layout ------------------ */
 
-.app {
-  max-width: 500px;
-  margin: auto;
-  padding: 2rem;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.1);
-}
-
-.new-task {
+.layout {
   display: flex;
-  gap: 0.5rem;
-  margin-bottom: 1rem;
+  height: 100vh;
+  background: #f9f9f9;
+  font-family: 'Segoe UI', Roboto, sans-serif;
+  color: #333;
+  transition: all 0.3s ease;
 }
 
-.new-task input {
-  flex: 1;
-  padding: 0.5rem;
+/* ----------------- Sidebar ------------------ */
+
+.sidebar {
+  width: 200px;
+  background: #1e2a38;
+  color: white;
+  padding: 2rem 1rem;
+  position: relative;
+  transition: width 0.3s ease;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
 }
+
+.sidebar h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #1abc9c;
+  text-align: center;
+}
+
+.nav button {
+  display: block;
+  width: 100%;
+  padding: 0.6rem 1rem;
+  margin-bottom: 0.5rem;
+  background: none;
+  border: none;
+  text-align: left;
+  font-size: 1rem;
+  color: #ddd;
+  border-radius: 4px;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.nav button:hover {
+  background: #2c3e50;
+  color: #fff;
+}
+
+.nav button.active-filter {
+  background: #1abc9c;
+  color: #fff;
+  font-weight: 600;
+}
+
+.collapse-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #1abc9c;
+  border: none;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Collapsed Sidebar */
+
+.sidebar-collapsed .sidebar {
+  width: 60px;
+}
+
+.sidebar-collapsed .sidebar h2,
+.sidebar-collapsed .nav button {
+  display: none;
+}
+
+/* ----------------- Main Content ------------------ */
+
+.main-content {
+  flex: 1;
+  padding: 2rem;
+  background: #fdfdfd;
+  overflow-y: auto;
+}
+
+.page-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  color: #2c3e50;
+}
+
+/* ----------------- Task Notes Grid ------------------ */
+
+.note-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+/* ----------------- Task Item ------------------ */
 
 .task-item {
+  position: relative;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+  height: 200px;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  background: #eef;
-  padding: 0.5rem;
-  margin: 0.3rem 0;
-  border-radius: 5px;
+  overflow: hidden;
 }
 
-.task-item.done span {
-  text-decoration: line-through;
+.task-item.done {
   opacity: 0.5;
+  filter: grayscale(100%);
+  text-decoration: line-through;
 }
 
-.filter-bar button {
-  margin-right: 5px;
-  padding: 0.3rem 0.6rem;
+/* Task Delete Button */
+
+.task-item button {
+  background: transparent;
+  border: none;
+  color: #bbb;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.task-item button:hover {
+  color: #e74c3c;
+}
+
+/* ----------------- Floating Add Button ------------------ */
+
+.fab-button {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #1abc9c;
+  color: white;
+  font-size: 2.2rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  z-index: 100;
+}
+
+.fab-button:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ----------------- Modal Buttons ------------------ */
+
+.modal button {
+  background-color: #0077ff;
+  color: #fff;
+  padding: 0.6rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal button:hover {
+  background-color: #005edc;
+  transform: translateY(-2px);
+}
+
+/* ----------------- Scrollbar Cleanup (Optional) ------------------ */
+
+.main-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.main-content::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
 }

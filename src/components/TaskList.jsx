@@ -1,19 +1,34 @@
 import { useState } from 'react';
 import TaskItem from './TaskItem';
+import NoteModal from './NoteModal';
+import Snackbar from './Snackbar';
 
 function TaskList({ tasks, setTasks, filter }) {
-  const [newTask, setNewTask] = useState('');
+  const [showModal, setShowModal] = useState(false);
+  const [showSnackbar, setShowSnackbar] = useState(false); // ✅ Move this inside component
 
-  const filtered = tasks.filter(t =>
-    filter === 'all' ? true :
-    filter === 'active' ? !t.completed :
-    t.completed
-  );
+  const today = new Date().toISOString().split('T')[0];
 
-  const handleAdd = () => {
-    if (newTask.trim() === '') return;
-    setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
-    setNewTask('');
+  const filtered = tasks.filter(t => {
+    if (filter === 'all') return true;
+    if (filter === 'active') return !t.completed;
+    if (filter === 'completed') return t.completed;
+    if (filter === 'today') return t.dueDate === today;
+    if (filter === 'upcoming') return t.dueDate > today;
+    return true;
+  });
+
+  const handleSave = ({ title, note, dueDate }) => {
+    setTasks([
+      ...tasks,
+      {
+        id: Date.now(),
+        text: title,
+        note,
+        dueDate,
+        completed: false,
+      }
+    ]);
   };
 
   const handleDrop = (e, index) => {
@@ -24,22 +39,40 @@ function TaskList({ tasks, setTasks, filter }) {
   };
 
   return (
-    <div className="task-list">
-      <div className="new-task">
-        <input
-          value={newTask}
-          onChange={e => setNewTask(e.target.value)}
-          placeholder="Add task..."
+    <>
+      <div className="note-grid">
+        {filtered.map((task, i) => (
+          <div
+            key={task.id}
+            onDrop={(e) => handleDrop(e, i)}
+            onDragOver={(e) => e.preventDefault()}
+          >
+            <TaskItem
+              task={task}
+              setTasks={setTasks}
+              tasks={tasks}
+              onComplete={() => setShowSnackbar(true)}
+            />
+          </div>
+        ))}
+
+        <button className="fab-button" onClick={() => setShowModal(true)}>
+          +
+        </button>
+
+        <NoteModal
+          show={showModal}
+          onClose={() => setShowModal(false)}
+          onSave={handleSave}
         />
-        <button onClick={handleAdd}>Add</button>
       </div>
 
-      {filtered.map((task, i) => (
-        <div key={task.id} onDrop={e => handleDrop(e, i)} onDragOver={e => e.preventDefault()}>
-          <TaskItem task={task} setTasks={setTasks} tasks={tasks} />
-        </div>
-      ))}
-    </div>
+      <Snackbar
+        message="Task marked as completed!"
+        show={showSnackbar}
+        onClose={() => setShowSnackbar(false)}
+      />
+    </>
   );
 }
 
