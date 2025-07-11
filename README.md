@@ -24,16 +24,19 @@ A **minimalist productivity web app** made with React — designed to help users
 - JavaScript (ES6+)
 - HTML5 + CSS3
 - `localStorage` for persistent offline support
-
+- 
 ---
+
 
 ## 📸 Screenshots
 
-> Add some screenshots here if possible!
-You can drag in PNGs or JPEGs of:
-- Main UI
-- Drawer sidebar
-- Notes/tasks in action
+<img width="1906" height="912" alt="Screenshot 2025-07-11 142745" src="https://github.com/user-attachments/assets/417dfdca-e80a-47d5-81c9-2df13eebcb25" />
+
+<img width="1868" height="1009" alt="Screenshot 2025-06-23 175149" src="https://github.com/user-attachments/assets/eb76ea24-3ca5-4136-8b88-d417d15b2df7" />
+
+<img width="947" height="907" alt="Screenshot 2025-07-11 142721" src="https://github.com/user-attachments/assets/3a56f724-ce78-418e-b6b1-cb25f673f63b" />
+
+<img width="950" height="911" alt="Screenshot 2025-07-11 142637" src="https://github.com/user-attachments/assets/0c72dc28-bec0-4411-b1bc-abfb0a1cf21a" />
 
 ---
 
