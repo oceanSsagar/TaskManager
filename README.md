@@ -1,4 +1,4 @@
-# TaskEase 🧠📋
+# TaskManager 🧠📋
 
 A **minimalist productivity web app** made with React — designed to help users manage their tasks efficiently and distraction-free. Built as a personal project to learn React, component-based UI design, and offline-first web app techniques.
 
@@ -43,6 +43,6 @@ Clone the repository and start the development server:
 
 ```bash
 git clone https://github.com/your-username/taskease.git
-cd taskease
+cd taskmanager
 npm install
 npm run dev
